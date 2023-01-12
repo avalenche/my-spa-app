@@ -1,0 +1,9 @@
+.header {
+  margin: 0 auto;
+  background-color: aqua;
+}
+
+.active {
+  color: blue;
+  font-weight: 800;
+}

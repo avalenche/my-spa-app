@@ -1,0 +1,27 @@
+{
+  "candidates": [
+    {
+      "id": 1,
+      "name": "Igor",
+      "surname": "Krut",
+      "tech": [
+        "HTML",
+        "CSS",
+        "ReactJS"
+      ],
+      "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "date": "10.01.2023"
+    },
+    {
+      "id": 2,
+      "name": "Petro",
+      "surname": "Mogyla",
+      "tech": [
+        "HTML",
+        "CSS"
+      ],
+      "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit.Reprehenderit ab aspernatur explicabo eum debitis iusto dolor deserunt dolorum! Aperiam quos dicta aliquid a dolor sint aspernatur voluptate error ipsa quis.",
+      "date": "11.01.2023"
+    }
+  ]
+}
