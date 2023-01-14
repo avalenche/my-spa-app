@@ -22,6 +22,44 @@
       ],
       "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit.Reprehenderit ab aspernatur explicabo eum debitis iusto dolor deserunt dolorum! Aperiam quos dicta aliquid a dolor sint aspernatur voluptate error ipsa quis.",
       "date": "11.01.2023"
+    },
+    {
+      "name": "asdas",
+      "surname": "sadas",
+      "tech": [
+        "HTML",
+        "CSS"
+      ],
+      "about": "df",
+      "id": 3
+    },
+    {
+      "name": "sdsdg",
+      "surname": "sdf",
+      "tech": [
+        "ReastJS"
+      ],
+      "about": "gg",
+      "id": 4
+    },
+    {
+      "name": "sdsdg",
+      "surname": "sdf",
+      "tech": [
+        "ReastJS"
+      ],
+      "about": "gg",
+      "id": 5
+    },
+    {
+      "name": "katya",
+      "surname": "dsf",
+      "tech": [
+        "HTML",
+        "CSS"
+      ],
+      "about": "ggg",
+      "id": 6
     }
   ]
 }
