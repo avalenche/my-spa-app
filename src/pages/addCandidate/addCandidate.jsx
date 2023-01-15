@@ -1,13 +1,12 @@
 import React from "react";
-import { Form, Input, Select, Button } from "antd"
-const { TextArea } = Input;
-
+import CandidateForm from '../../components/CandidateForm';
+import { Form, message } from "antd"
+import PageTitle from '../../components/PageTitle';
 
 const AddCandidate = () => {
-
   const [form] = Form.useForm();
 
-  const onFinish = (value) => {
+  const onAddCandidate = (value) => {
     fetch('http://localhost:4000/candidates', {
       method: 'POST',
       headers: {
@@ -16,49 +15,21 @@ const AddCandidate = () => {
       body: JSON.stringify(value),
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then((value) => {
+        message.success("Candidate data is upload")
         form.resetFields();
-        console.log('Success:', data);
       })
       .catch((error) => {
-
+        message.error("Candidate data is not upload")
         console.error('Error:', error);
       });
   }
 
+
   return (
     <div>
-      <Form
-        labelCol={{
-          span: 4,
-        }}
-        wrapperCol={{
-          span: 14,
-        }}
-        onFinish={onFinish}
-        form={form}
-      >
-        <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input your Name!' }]}>
-          <Input type='text' />
-        </Form.Item>
-        <Form.Item label="Surname" name="surname" rules={[{ required: true, message: 'Please input your Surname!' }]}>
-          <Input />
-        </Form.Item>
-        <Form.Item name="tech" label="Tech" >
-          <Select mode='multiple'>
-            <Select.Option value="ReastJS">ReastJS</Select.Option>
-            <Select.Option value="HTML">HTML</Select.Option>
-            <Select.Option value="CSS">CSS</Select.Option>
-          </Select>
-        </Form.Item>
-        <Form.Item label="About" name="about">
-          <TextArea rows={4} />
-        </Form.Item>
-        <Form.Item label="Submit">
-          <Button htmlType='submit' >Send</Button>
-
-        </Form.Item>
-      </Form>
+      <PageTitle title="Add Candidate:" />
+      <CandidateForm onFinish={onAddCandidate} form={form} />
     </div>
 
   );

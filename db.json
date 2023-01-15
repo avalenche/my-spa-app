@@ -1,8 +1,7 @@
 {
   "candidates": [
     {
-      "id": 1,
-      "name": "Igor",
+      "name": "Mashka",
       "surname": "Krut",
       "tech": [
         "HTML",
@@ -10,18 +9,16 @@
         "ReactJS"
       ],
       "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
-      "date": "10.01.2023"
+      "id": 1
     },
     {
-      "id": 2,
       "name": "Petro",
-      "surname": "Mogyla",
+      "surname": "bvaa",
       "tech": [
-        "HTML",
-        "CSS"
+        "HTML"
       ],
       "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit.Reprehenderit ab aspernatur explicabo eum debitis iusto dolor deserunt dolorum! Aperiam quos dicta aliquid a dolor sint aspernatur voluptate error ipsa quis.",
-      "date": "11.01.2023"
+      "id": 2
     },
     {
       "name": "asdas",
@@ -60,6 +57,171 @@
       ],
       "about": "ggg",
       "id": 6
+    },
+    {
+      "name": "ggg",
+      "surname": "ggg",
+      "tech": [
+        "ReastJS"
+      ],
+      "about": "gg",
+      "id": 7
+    },
+    {
+      "name": "11",
+      "surname": "1112",
+      "tech": [
+        "HTML"
+      ],
+      "id": 8
+    },
+    {
+      "name": "Serhii",
+      "surname": "fff",
+      "about": "dddd",
+      "id": 9
+    },
+    {
+      "name": "serhii",
+      "surname": "ww",
+      "id": 10
+    },
+    {
+      "name": "Rachok",
+      "surname": "Mogyla",
+      "tech": [
+        "HTML",
+        "ReastJS"
+      ],
+      "about": "Very Good Man",
+      "id": 11
+    },
+    {
+      "name": "ss",
+      "surname": "ss",
+      "id": 12
+    },
+    {
+      "name": "aa",
+      "surname": "aa",
+      "about": "aa",
+      "id": 13
+    },
+    {
+      "name": "sdf",
+      "surname": "sdsdf",
+      "tech": [
+        "HTML"
+      ],
+      "id": 14
+    },
+    {
+      "name": "jghj",
+      "surname": "jjj",
+      "tech": [
+        "ReastJS"
+      ],
+      "about": "ww",
+      "id": 15
+    },
+    {
+      "name": "fff",
+      "surname": "fff",
+      "tech": [
+        "HTML"
+      ],
+      "about": "ff",
+      "id": 16
+    },
+    {
+      "name": "ttt",
+      "surname": "tt",
+      "tech": [
+        "CSS"
+      ],
+      "id": 17
+    },
+    {
+      "name": "dsd",
+      "surname": "sdad",
+      "tech": [
+        "ReastJS"
+      ],
+      "about": "ddd",
+      "id": 18
+    },
+    {
+      "name": "fff",
+      "surname": "ff",
+      "tech": [
+        "HTML"
+      ],
+      "about": "ff",
+      "id": 19
+    },
+    {
+      "name": "аа",
+      "surname": "аа",
+      "tech": [
+        "CSS"
+      ],
+      "id": 20
+    },
+    {
+      "name": "Vasya",
+      "surname": "Pupkin",
+      "id": 21
+    },
+    {
+      "name": "New",
+      "surname": "Candidate",
+      "id": 22
+    },
+    {
+      "name": "fff",
+      "surname": "fff",
+      "id": 23
+    },
+    {
+      "name": "asasas",
+      "surname": "sasasas",
+      "tech": [
+        "HTML"
+      ],
+      "about": "dddddd",
+      "id": 24
+    },
+    {
+      "name": "sasas",
+      "surname": "asas",
+      "id": 25
+    },
+    {
+      "name": "dfgdfg",
+      "surname": "dfgdg",
+      "tech": [
+        "HTML",
+        "CSS"
+      ],
+      "about": "dfgdfg",
+      "id": 26
+    },
+    {
+      "name": "adas",
+      "surname": "dasdasd",
+      "tech": [
+        "HTML"
+      ],
+      "about": "dd",
+      "id": 27
+    },
+    {
+      "name": "aasf ",
+      "surname": "fff",
+      "tech": [
+        "HTML"
+      ],
+      "id": 28
     }
   ]
 }

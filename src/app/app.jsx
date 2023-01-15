@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./app.module.css";
 import AboutCandidate from "../pages/aboutCandidate";
 import AddCandidate from "../pages/addCandidate";
-import AppHeader from "../appHeader";
+import AppHeader from "../components/appHeader";
 import HomePage from "../pages/homePage";
 import NotFoundPage from '../pages/notFound';
 import { Routes, Route } from "react-router-dom";
@@ -16,7 +16,7 @@ const App = () => {
       <AppHeader />
       <Routes >
         <Route path='/' element={<HomePage />} />
-        <Route path='/aboute/:id' element={<AboutCandidate />} />
+        <Route path='/about/:id' element={<AboutCandidate />} />
         <Route path='/add' element={<AddCandidate />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
