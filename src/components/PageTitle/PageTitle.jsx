@@ -1,3 +1,5 @@
 import React from 'react';
-const PageTitle = ({ title }) => <h1>{title}</h1>
+import styles from './PageTitle.module.css';
+
+const PageTitle = ({ title }) => <h1 className={styles.pageTitle}>{title}</h1>
 export default PageTitle;

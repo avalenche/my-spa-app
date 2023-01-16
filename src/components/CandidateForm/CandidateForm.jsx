@@ -1,18 +1,9 @@
 import React from 'react';
 import { Form, Input, Select, Button } from "antd"
-import { deleteCandidate } from '../../utils/toast';
 
 const { TextArea } = Input;
 
-
-const CandidateForm = ({ onFinish, form, initialValues }) => {
-
-
-
-  const deleteOneCandidate = () => {
-    deleteCandidate("Hello")
-
-  }
+const CandidateForm = ({ onFinish, form, initialValues, deleteOneCandidate }) => {
 
   return (
     <Form
