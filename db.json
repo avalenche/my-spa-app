@@ -1,23 +1,82 @@
 {
   "candidates": [
     {
-      "name": "Serhii",
-      "surname": "Serhii",
+      "name": "Mashka",
+      "surname": "Vashka",
       "tech": [
-        "HTML"
+        "CSS"
       ],
-      "about": ";kljs asdfjklhasdkljh sa;kfjopwkfp wejoipwe hoaweinf",
-      "id": 1
+      "about": " dfas sfsad sd sd dsfa sasd",
+      "id": 3
     },
     {
-      "name": "Andrii",
-      "surname": "HHH",
+      "name": "Seven",
+      "surname": "sevenup",
       "tech": [
-        "CSS",
         "HTML"
       ],
-      "about": "sda  asdasd asd ",
-      "id": 2
+      "about": "fsdfs dfs df",
+      "id": 12
+    },
+    {
+      "name": "Petro",
+      "surname": "Zagrebelny",
+      "tech": [
+        "HTML ",
+        "CSS "
+      ],
+      "about": "Cool man",
+      "id": 14
+    },
+    {
+      "name": "Poll",
+      "surname": "Ambrams",
+      "tech": [
+        "CSS ",
+        "ReastJS ",
+        "HTML "
+      ],
+      "about": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like.",
+      "id": 15
+    },
+    {
+      "name": "Test",
+      "surname": "Test 1",
+      "tech": [
+        "CSS "
+      ],
+      "about": "dadasd",
+      "id": 16
+    },
+    {
+      "name": "asdasas",
+      "surname": "asdasd",
+      "tech": [
+        "CSS "
+      ],
+      "id": 17
+    },
+    {
+      "name": "adasdasd5555",
+      "surname": "6666",
+      "tech": [
+        "HTML "
+      ],
+      "id": 18
+    },
+    {
+      "name": "gggg",
+      "surname": "ggg",
+      "about": "ggg",
+      "id": 19
+    },
+    {
+      "name": "ddd",
+      "surname": "ddd",
+      "tech": [
+        "HTML "
+      ],
+      "id": 20
     }
   ]
 }
