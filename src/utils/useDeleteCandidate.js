@@ -3,10 +3,11 @@ import { message } from "antd";
 
 export const useDeleteCandidate = (onSucces) => {
   const [isLoading, setIsLoading] = useState(false);
+  const url = "http://localhost:4000/candidates/";
 
   const onDeleteCandidate = (elId) => {
     setIsLoading(true);
-    fetch(`http://localhost:4000/candidates/${elId}`, {
+    fetch(url + elId, {
       method: "DELETE",
     })
       .then((response) => response.json())

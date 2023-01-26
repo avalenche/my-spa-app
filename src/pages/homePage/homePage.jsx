@@ -8,6 +8,7 @@ const HomePage = () => {
   return (
     <div >
       <PageTitle title="Candidates:" />
+
       <TitleTable />
     </div>
   );

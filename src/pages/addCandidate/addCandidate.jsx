@@ -16,7 +16,7 @@ const AddCandidate = () => {
     <div>
       <PageTitle title="Add Candidate:" />
       <Spin spinning={isLoading}>
-        <CandidateForm onFinish={onAddCandidate} isShowDelButton />
+        <CandidateForm onFinish={onAddCandidate} />
       </Spin>
     </div>
 

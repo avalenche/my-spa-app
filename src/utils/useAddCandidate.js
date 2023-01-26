@@ -3,10 +3,11 @@ import { message } from "antd";
 
 export const useAddCandidate = (onSuccess) => {
   const [isLoading, setIsLoading] = useState(false);
+  const url = "http://localhost:4000/candidates/";
 
   const onAddCandidate = (value) => {
     setIsLoading(true);
-    fetch("http://localhost:4000/candidates", {
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

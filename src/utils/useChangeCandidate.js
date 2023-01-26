@@ -3,10 +3,11 @@ import { useState } from "react";
 
 export const useChangeCandidate = (id) => {
   const [isLoading, setIsLoading] = useState(false);
+  const url = "http://localhost:4000/candidates/";
 
   const onChangeCandidate = (value) => {
     setIsLoading(true);
-    fetch(`http://localhost:4000/candidates/${id}`, {
+    fetch(url + id, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

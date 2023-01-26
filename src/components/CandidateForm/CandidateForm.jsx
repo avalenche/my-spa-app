@@ -43,7 +43,7 @@ const CandidateForm = ({ onFinish, initialValues, form, deleteOneCandidate, isSh
 
       {isShowDelButton && (
         <Form.Item label="Delete">
-          <Button onClick={deleteOneCandidate} >Send</Button>
+          <Button onClick={deleteOneCandidate} >Delete</Button>
         </Form.Item>
       )}
 

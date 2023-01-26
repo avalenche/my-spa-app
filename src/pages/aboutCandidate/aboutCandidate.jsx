@@ -38,7 +38,7 @@ const AboutCandidate = () => {
     <div>
       <PageTitle title="About Candidate:" />
       <Spin spinning={isLoading || isLoadingDelete || isLoadingChange}>
-        <CandidateForm onFinish={onChangeCandidate} form={form} initialValues={candidate} deleteOneCandidate={onDelete} />
+        <CandidateForm onFinish={onChangeCandidate} form={form} initialValues={candidate} deleteOneCandidate={onDelete} isShowDelButton />
       </Spin>
     </div>
   );
