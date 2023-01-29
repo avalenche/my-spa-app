@@ -27,9 +27,9 @@ const CandidateForm = ({ onFinish, initialValues, form, deleteOneCandidate, isSh
 
       <Form.Item name="tech" label="Tech" >
         <Select mode='multiple'>
-          <Select.Option value="ReastJS ">ReastJS</Select.Option>
-          <Select.Option value="HTML ">HTML</Select.Option>
-          <Select.Option value="CSS ">CSS</Select.Option>
+          <Select.Option value="reactjs">ReastJS</Select.Option>
+          <Select.Option value="html">HTML</Select.Option>
+          <Select.Option value="css">CSS</Select.Option>
         </Select>
       </Form.Item>
 

@@ -1,145 +1,45 @@
 {
   "candidates": [
     {
-      "name": "Mashka",
-      "surname": "Vashka",
+      "name": "eee",
+      "surname": "eee",
       "tech": [
-        "CSS"
+        "css"
       ],
-      "about": " dfas sfsad sd sd dsfa sasd",
+      "addDate": "2023-01-29 18:11:19",
+      "id": 2
+    },
+    {
+      "name": "eerrwr",
+      "surname": "qwrqwr",
+      "tech": [
+        "html",
+        "reactjs"
+      ],
+      "addDate": "2023-01-29 18:11:26",
       "id": 3
     },
     {
-      "name": "Seven",
-      "surname": "sevenup",
+      "name": "new",
+      "surname": "ew",
       "tech": [
-        "HTML"
+        "css",
+        "reactjs"
       ],
-      "about": "fsdfs dfs df",
-      "id": 12
+      "addDate": "2023-01-29 18:18:04",
+      "id": 4
     },
     {
-      "name": "Petro",
-      "surname": "Zagrebelny",
+      "name": "сс",
+      "surname": "сс",
       "tech": [
-        "HTML ",
-        "CSS "
+        "css",
+        "reactjs",
+        "html"
       ],
-      "about": "Cool man",
-      "id": 14
-    },
-    {
-      "name": "asdasas",
-      "surname": "asdasd",
-      "tech": [
-        "CSS "
-      ],
-      "id": 17
-    },
-    {
-      "name": "adasdasd5555",
-      "surname": "6666",
-      "tech": [
-        "HTML "
-      ],
-      "id": 18
-    },
-    {
-      "name": "gggg",
-      "surname": "ggg",
-      "tech": [
-        "CSS "
-      ],
-      "about": "ggg",
-      "id": 19
-    },
-    {
-      "name": "ddd",
-      "surname": "ddd",
-      "tech": [
-        "HTML "
-      ],
-      "id": 20
-    },
-    {
-      "name": "New 11",
-      "surname": "New",
-      "tech": [
-        "CSS "
-      ],
-      "about": "dddd",
-      "id": 21
-    },
-    {
-      "name": "new 2",
-      "surname": "new 2",
-      "tech": [
-        "ReastJS "
-      ],
-      "about": "new 2",
-      "id": 22
-    },
-    {
-      "name": "new_3",
-      "surname": "new_3",
-      "tech": [
-        "HTML "
-      ],
-      "id": 23
-    },
-    {
-      "name": "Назар",
-      "surname": "Степанюк",
-      "tech": [
-        "HTML "
-      ],
-      "about": "Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-      "id": 24
-    },
-    {
-      "name": "vasya",
-      "surname": "ffff",
-      "tech": [
-        "HTML "
-      ],
-      "id": 25
-    },
-    {
-      "name": "jhjkh",
-      "surname": "vasya",
-      "tech": [
-        "CSS "
-      ],
-      "id": 26
-    },
-    {
-      "name": "fgdgdg",
-      "surname": "xgert",
-      "tech": [
-        "CSS "
-      ],
-      "about": "vasya",
-      "id": 27
-    },
-    {
-      "name": "test 15",
-      "surname": "test 15",
-      "tech": [
-        "HTML "
-      ],
-      "about": "test",
-      "id": 28
-    },
-    {
-      "name": "Новий",
-      "surname": "Чувак",
-      "tech": [
-        "CSS ",
-        "ReastJS ",
-        "HTML "
-      ],
-      "about": "Крутий чувак",
-      "id": 29
+      "about": "ссс",
+      "addDate": "2023-01-29 18:45:26",
+      "id": 5
     }
   ]
 }

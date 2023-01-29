@@ -2,46 +2,33 @@ import React, { useEffect } from 'react';
 import DownMenu from '../DownMenu';
 import queryString from "query-string"
 
-import { Table, Spin } from 'antd';
+import { Table, Spin, Tag } from 'antd';
 import { useState } from 'react';
 import { useFethcCandidates } from '../../utils/useFetchCandidates';
 import { useDeleteCandidate } from '../../utils/useDeleteCandidate';
 import Filter from '../Filter';
 import { useCallback } from 'react';
+import { orderLabels, techLabels } from './config';
 
-const defaultPagination = {
-  total: 0,
-  current: 1,
-  pageSize: 10,
-  pageSizeOptions: ["10", "20", "30"],
-  showSizeChanger: true
-}
 
-const orderLabels = { ascend: "asc", descend: "desc" }
 
 const TitleTable = () => {
 
-  const [pagination, setPagination] = useState(defaultPagination)
-
+  const { candidates, isLoading, totalCandidate, fetchCandidates } = useFethcCandidates();
+  const { isLoading: isLoadingDelete, onDeleteCandidate } = useDeleteCandidate(() => fetchCandidates(queryString.stringify(filterData, { arrayFormat: 'bracket' })));
 
   const [filterData, setFilterData] = useState({
     q: undefined,
-    _sort: undefined,
-    _order: undefined,
-    _limit: undefined,
-    _page: undefined
-
+    _sort: "id",
+    _order: "desc",
+    _limit: 10,
+    _page: 1,
+    tech_like: undefined,
   });
 
-
-  const { candidates, isLoading, fetchCandidates } = useFethcCandidates();
-  const { isLoading: isLoadingDelete, onDeleteCandidate } = useDeleteCandidate(fetchCandidates);
-
   useEffect(() => {
-    const query = queryString.stringify(filterData)
-    fetchCandidates(`?${query}`);
+    fetchCandidates(queryString.stringify(filterData, { arrayFormat: 'bracket' }));
   }, [filterData])
-
 
   const onFilter = (e) => {
     setTimeout(() => {
@@ -57,109 +44,13 @@ const TitleTable = () => {
     setFilterData((prev) => ({
       ...prev,
       _sort: sorter.field,
-      _order: orderLabels[sorter.order]
+      _order: orderLabels[sorter.order],
+      _limit: pagination.pageSize,
+      _page: pagination.current,
+      tech_like: filters.tech,
     }))
-    setPagination(pagination)
-
+    console.log('pagination: ', pagination)
   }, []);
-  /*
-    const getColumnSearchProps = (dataIndex) => ({
-      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
-        <div
-          style={{
-            padding: 8,
-          }}
-          onKeyDown={(e) => e.stopPropagation()}
-        >
-          <Input
-            ref={searchInput}
-            placeholder={`Search ${dataIndex}`}
-            value={selectedKeys[0]}
-            onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-            onPressEnter={() =>
-              (handleSearch(selectedKeys, confirm, dataIndex))}
-            style={{
-              marginBottom: 8,
-              display: 'block',
-            }}
-          />
-          <Space>
-            <Button
-              type="primary"
-              onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-              icon={<SearchOutlined />}
-              size="small"
-              style={{
-                width: 90,
-              }}
-            >
-              Search
-            </Button>
-            <Button
-              onClick={() => clearFilters && handleReset(clearFilters)}
-              size="small"
-              style={{
-                width: 90,
-              }}
-            >
-              Reset
-            </Button>
-            <Button
-              type="link"
-              size="small"
-              onClick={() => {
-                confirm({
-                  closeDropdown: false,
-                });
-                setSearchText(selectedKeys[0]);
-                setSearchedColumn(dataIndex);
-              }}
-            >
-              Filter
-            </Button>
-            <Button
-              type="link"
-              size="small"
-              onClick={() => {
-                close();
-              }}
-            >
-              close
-            </Button>
-          </Space>
-        </div>
-      ),
-      filterIcon: (filtered) => (
-        <SearchOutlined
-          style={{
-            color: filtered ? '#1890ff' : undefined,
-          }}
-        />
-      ),
-      onFilter: (value, record) =>
-        record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
-      onFilterDropdownOpenChange: (visible) => {
-        if (visible) {
-          setTimeout(() => searchInput.current?.select(), 100);
-        }
-      },
-      render: (text) =>
-        searchedColumn === dataIndex ? (
-          <Highlighter
-            highlightStyle={{
-              backgroundColor: '#ffc069',
-              padding: 0,
-            }}
-            searchWords={[searchText]}
-            autoEscape
-            textToHighlight={text ? text.toString() : ''}
-          />
-        ) : (
-          text
-        ),
-    });
-  */
-  //-2-
 
   const columns = [
     {
@@ -168,7 +59,7 @@ const TitleTable = () => {
       dataIndex: 'id',
       key: 'id',
       sorter: true,
-
+      defaultSortOrder: 'descend'
     },
     {
       width: "15%",
@@ -176,7 +67,6 @@ const TitleTable = () => {
       dataIndex: 'name',
       key: 'name',
       sorter: true,
-      //    render: (text, el) => <Link to={`/about/${el.id}`}>{text}</Link>,
     },
     {
       width: "15%",
@@ -189,11 +79,34 @@ const TitleTable = () => {
       title: 'Tech',
       dataIndex: 'tech',
       key: 'tech',
+      filters: [
+        {
+          text: 'CSS',
+          value: 'css',
+        },
+        {
+          text: 'HTML',
+          value: 'html',
+        },
+        {
+          text: 'ReastJS',
+          value: 'reactjs',
+        },
+      ],
+      render: (tech) => {
+        return tech.map((item) => <Tag key={item} color="magenta">{techLabels[item]}</Tag>)
+      }
     },
     {
       title: 'About',
       dataIndex: 'about',
       key: 'about',
+    },
+    {
+      title: 'Date',
+      dataIndex: 'addDate',
+      key: 'addDate',
+      sorter: true,
     },
     {
       title: 'Action',
@@ -204,13 +117,27 @@ const TitleTable = () => {
       }
 
     }
+
   ];
 
   return (
     <Spin spinning={isLoading || isLoadingDelete}>
 
       <Filter onFilterCandidate={onFilter} />
-      <Table pagination={pagination} rowKey="id" sortDirections={["ascend", "descend", "ascend"]} dataSource={candidates} columns={columns} onChange={onTableChange} />
+      <Table
+        pagination={{
+          total: totalCandidate,
+          current: filterData._page,
+          pageSize: filterData._limit,
+          pageSizeOptions: ["10", "20", "30"],
+          showSizeChanger: true,
+        }}
+        rowKey="id"
+        sortDirections={["ascend", "descend", "ascend"]}
+        dataSource={candidates}
+        columns={columns}
+        onChange={onTableChange}
+      />
 
     </Spin>
   );
