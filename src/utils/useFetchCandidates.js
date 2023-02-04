@@ -8,17 +8,13 @@ export const useFethcCandidates = () => {
   const url = "http://localhost:4000/candidates/";
 
   const fetchCandidates = (queryString) => {
+    
     const queryUrl = queryString ? `${url}?${queryString}` : url;
     //   const queryUrl = `${url}${queryString || ""}`;
     setIsLoading(true);
     fetch(queryUrl)
       .then((response) => {
-        setTotalCandidate(() => response.headers.get("X-Total-Count"));
-        console.log(
-          "totalPage: ",
-          totalCandidate,
-          response.headers.get("X-Total-Count")
-        );
+        setTotalCandidate(response.headers.get("X-Total-Count"));
         return response.json();
       })
       .then((body) => setCandidates(body))

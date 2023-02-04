@@ -11,7 +11,6 @@ import { useCallback } from 'react';
 import { orderLabels, techLabels } from './config';
 
 
-
 const TitleTable = () => {
 
   const { candidates, isLoading, totalCandidate, fetchCandidates } = useFethcCandidates();
@@ -38,18 +37,14 @@ const TitleTable = () => {
   }
 
   const onTableChange = useCallback((pagination, filters, sorter) => {
-    console.log('pagination: ', pagination)
-    console.log('filter: ', filters)
-    console.log('sorter: ', sorter)
     setFilterData((prev) => ({
       ...prev,
       _sort: sorter.field,
       _order: orderLabels[sorter.order],
       _limit: pagination.pageSize,
       _page: pagination.current,
-      tech_like: filters.tech,
+      tech_like: filters.tech || undefined,
     }))
-    console.log('pagination: ', pagination)
   }, []);
 
   const columns = [
@@ -94,7 +89,8 @@ const TitleTable = () => {
         },
       ],
       render: (tech) => {
-        return tech.map((item) => <Tag key={item} color="magenta">{techLabels[item]}</Tag>)
+        if (tech)
+          return tech.map((item) => <Tag key={item} color={item === "reactjs" ? "green" : "volcano"} > {techLabels[item]}</Tag >)
       }
     },
     {

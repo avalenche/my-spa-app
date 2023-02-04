@@ -8,6 +8,7 @@ export const useChangeCandidate = (id) => {
   const url = "http://localhost:4000/candidates/";
 
   const onChangeCandidate = (value) => {
+    console.log("onChange: ", value);
     const dateNow = moment().format("YYYY-MM-DD HH:mm:ss");
     const newValue = {
       ...value,

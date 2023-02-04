@@ -1,10 +1,13 @@
 import React from 'react';
-import { Form, Input, Select, Button } from "antd"
+import { Form, Input, Select, Button, Upload, Image } from "antd"
+import { UploadOutlined } from '@ant-design/icons';
+import UploadImage from '../UploadImage';
 
 const { TextArea } = Input;
 
 const CandidateForm = ({ onFinish, initialValues, form, deleteOneCandidate, isShowDelButton }) => {
-
+  //const url = initialValues.uploadImage.file.thumbUrl || undefined;
+  //console.log("candidates:", initialValues.uploadImage.file.thumbUrl)
   return (
     <Form
       labelCol={{
@@ -22,7 +25,7 @@ const CandidateForm = ({ onFinish, initialValues, form, deleteOneCandidate, isSh
       </Form.Item>
 
       <Form.Item label="Surname" name="surname" rules={[{ required: true, message: 'Please input your Surname!' }]}>
-        <Input />
+        <Input type='text' />
       </Form.Item>
 
       <Form.Item name="tech" label="Tech" >
@@ -35,6 +38,15 @@ const CandidateForm = ({ onFinish, initialValues, form, deleteOneCandidate, isSh
 
       <Form.Item label="About" name="about">
         <TextArea rows={4} />
+      </Form.Item>
+
+      <Form.Item
+        name="uploadImage"
+        label="Image"
+
+      >
+        <UploadImage name="uploadImage" maxSizeMb={5} />
+
       </Form.Item>
 
       <Form.Item label="Submit">
