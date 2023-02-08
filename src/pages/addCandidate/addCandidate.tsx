@@ -5,11 +5,11 @@ import CandidateForm from '../../components/CandidateForm';
 import PageTitle from '../../components/PageTitle';
 import { useAddCandidate } from '../../utils/useAddCandidate';
 
-
 const AddCandidate = () => {
   const navigate = useNavigate();
 
   const toHomePage = () => navigate("/");
+  console.log("toHomePage:", typeof toHomePage)
   const { onAddCandidate, isLoading } = useAddCandidate(toHomePage)
 
   return (

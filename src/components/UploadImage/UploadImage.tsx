@@ -1,41 +1,47 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState } from 'react';
 
-import { Upload, Button, Form } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+import type {  UploadRequestOption  } from 'rc-upload/lib/interface';
+import { Upload, Button, Form } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 
-export const UploadImage = ({ name, maxSizeMb }) => {
+interface IProps {
+  name: string;
+  maxSizeMb: number;
+}
+
+export const UploadImage: React.FC<IProps>  = ({ name, maxSizeMb }: IProps) => {
   const form = Form.useFormInstance();
   const imageUrl = Form.useWatch(name, form);
 
-  const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState<string>();
 
   const handleRequest = useCallback(
-    (opt) => {
+    (opt: UploadRequestOption) => {
       const reader = new FileReader();
-      reader.readAsDataURL(opt.file);
+      reader.readAsDataURL(opt.file as Blob);
       reader.onload = () => {
         form.setFieldValue(name, reader.result);
       };
     },
-    [name, form]
+    [name, form],
   );
 
   const validateFile = useCallback(
-    (file) => {
-      const fileType = file.name.split(".").pop().toLowerCase();
+    (file: Blob) => {
+      const fileType = file.name.split('.').pop()?.toLowerCase();
 
       if (file.size > maxSizeMb * 1024 * 1024) {
         setErrorMessage(`Can’t upload. File size exceeds ${maxSizeMb} Mb`);
         return false;
       }
-      if (fileType !== "png" && fileType !== "jpg") {
-        setErrorMessage("Can’t upload. File format is other than jpg, png");
+      if (fileType !== 'png' && fileType !== 'jpg') {
+        setErrorMessage('Can’t upload. File format is other than jpg, png');
         return false;
       }
       setErrorMessage(undefined);
       return true;
     },
-    [maxSizeMb]
+    [maxSizeMb],
   );
 
   return (
@@ -46,7 +52,7 @@ export const UploadImage = ({ name, maxSizeMb }) => {
       showUploadList={false}
     >
       {imageUrl ? (
-        <img src={imageUrl} alt="candidate" />
+        <img src={imageUrl} alt="candidate" width="200px" />
       ) : (
         <div>
           <Button icon={<UploadOutlined />}>Click to upload</Button>

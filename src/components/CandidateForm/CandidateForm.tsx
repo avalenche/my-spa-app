@@ -1,13 +1,26 @@
-import React from 'react';
-import { Form, Input, Select, Button, Upload, Image } from "antd"
-import { UploadOutlined } from '@ant-design/icons';
+import React, {useEffect} from 'react';
+import { Form, Input, Select, Button } from "antd"
+
 import UploadImage from '../UploadImage';
+import { TCandidate, TECH } from 'types/types';
+import { techLabels } from 'components/TitleTable/config';
+
+type TProps ={
+  onFinish: (value: Omit<TCandidate, "addDate">) => void;
+  initialValues?: TCandidate;
+  deleteOneCandidate?:()=> void;
+}
 
 const { TextArea } = Input;
 
-const CandidateForm = ({ onFinish, initialValues, form, deleteOneCandidate, isShowDelButton }) => {
-  //const url = initialValues.uploadImage.file.thumbUrl || undefined;
-  //console.log("candidates:", initialValues.uploadImage.file.thumbUrl)
+const CandidateForm: React.FC<TProps>  = ({ onFinish, initialValues,  deleteOneCandidate}) => {
+  const [form] = Form.useForm();
+
+  useEffect(() => {
+    if (initialValues) form.resetFields();
+  }, [initialValues, form])
+
+
   return (
     <Form
       labelCol={{
@@ -18,7 +31,7 @@ const CandidateForm = ({ onFinish, initialValues, form, deleteOneCandidate, isSh
       }}
       onFinish={onFinish}
       initialValues={initialValues}
-      form={form}
+     form={form}
     >
       <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please input your Name!' }]}>
         <Input type='text' />
@@ -30,9 +43,9 @@ const CandidateForm = ({ onFinish, initialValues, form, deleteOneCandidate, isSh
 
       <Form.Item name="tech" label="Tech" >
         <Select mode='multiple'>
-          <Select.Option value="reactjs">ReastJS</Select.Option>
-          <Select.Option value="html">HTML</Select.Option>
-          <Select.Option value="css">CSS</Select.Option>
+          <Select.Option value={TECH.REACTJS}>{techLabels[TECH.REACTJS]}</Select.Option>
+          <Select.Option value={TECH.HTML}>{techLabels[TECH.HTML]}</Select.Option>
+          <Select.Option value={TECH.CSS}>{techLabels[TECH.CSS]}</Select.Option>
         </Select>
       </Form.Item>
 
@@ -43,7 +56,6 @@ const CandidateForm = ({ onFinish, initialValues, form, deleteOneCandidate, isSh
       <Form.Item
         name="uploadImage"
         label="Image"
-
       >
         <UploadImage name="uploadImage" maxSizeMb={5} />
 
@@ -53,7 +65,7 @@ const CandidateForm = ({ onFinish, initialValues, form, deleteOneCandidate, isSh
         <Button htmlType='submit' >Submit</Button>
       </Form.Item>
 
-      {isShowDelButton && (
+      {deleteOneCandidate && (
         <Form.Item label="Delete">
           <Button onClick={deleteOneCandidate} >Delete</Button>
         </Form.Item>

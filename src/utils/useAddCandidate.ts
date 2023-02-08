@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { message } from "antd";
 
-const moment = require("moment");
+import moment from "moment";
+import { TCandidate } from 'types/types';
 
-export const useAddCandidate = (onSuccess) => {
+export const useAddCandidate = (onSuccess: Function) => {
   const [isLoading, setIsLoading] = useState(false);
+  
   const url = "http://localhost:4000/candidates/";
 
-  const onAddCandidate = (value) => {
+  const onAddCandidate = (value: Omit<TCandidate, "addDate">) => {
     const dateNow = moment().format("YYYY-MM-DD HH:mm:ss");
-    const newValue = {
+    const newValue: TCandidate = {
       ...value,
       addDate: dateNow,
     };

@@ -3,8 +3,12 @@ import { MoreOutlined } from '@ant-design/icons';
 import { Button, Popover, Space } from 'antd';
 import { Link } from 'react-router-dom';
 
+interface IProps {
+  id: number;
+  deleteEl: ()=> void;
+}
 
-const DownMenu = ({ id, deleteEl }) => {
+const DownMenu: React.FC<IProps>  = ({ id, deleteEl }) => {
 
 
   const content = <div>
