@@ -17,7 +17,7 @@ const items = [
   }
 ];
 
-const AppHeader = () => {
+const AppHeader: React.FC = () => {
   const [current, setCurrent] = useState('home');
 
   const onClick = (e: { key: React.SetStateAction<string>; }) => {

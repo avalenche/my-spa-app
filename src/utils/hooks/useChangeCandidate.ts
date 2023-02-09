@@ -1,24 +1,22 @@
-import { useState } from "react";
 import { message } from "antd";
-
-import moment from "moment";
+import { useState } from "react";
 import { TCandidate } from 'types/types';
+import { link } from '../const';
+import moment from 'moment';
 
-export const useAddCandidate = (onSuccess: Function) => {
+export const useChangeCandidate = (id: number) => {
   const [isLoading, setIsLoading] = useState(false);
   
-  const url = "http://localhost:4000/candidates/";
-
-  const onAddCandidate = (value: Omit<TCandidate, "addDate">) => {
+  const onChangeCandidate = (value: Omit<TCandidate, "addDate">) => {
+    console.log("onChange: ", value);
     const dateNow = moment().format("YYYY-MM-DD HH:mm:ss");
-    const newValue: TCandidate = {
+    const newValue = {
       ...value,
       addDate: dateNow,
     };
     setIsLoading(true);
-    
-    fetch(url, {
-      method: "POST",
+    fetch(link + id, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -27,16 +25,16 @@ export const useAddCandidate = (onSuccess: Function) => {
       .then((response) => response.json())
       .then(() => {
         message.success("Candidate data is upload");
-        if (onSuccess) onSuccess();
       })
       .catch((error) => {
-        message.error("Candidate data is not upload");
-        console.error("Error:", error);
+        message.error("Candidate data is upload");
+        console.log("Error:", error);
       })
       .finally(() => setIsLoading(false));
   };
+
   return {
-    onAddCandidate,
+    onChangeCandidate,
     isLoading,
   };
 };

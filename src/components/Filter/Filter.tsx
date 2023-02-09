@@ -6,7 +6,7 @@ interface IProps {
   onFilterCandidate: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Filter: React.FC<IProps>  = ({ onFilterCandidate }: IProps) => {
+const Filter: React.FC<IProps>  = ({ onFilterCandidate }) => {
   return <Input className={styles.filter} onChange={onFilterCandidate} allowClear placeholder="Search" />
 }
 export default Filter;

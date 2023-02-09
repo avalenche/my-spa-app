@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { message } from "antd";
+import { link } from '../const';
 
-export const useDeleteCandidate = (onSucces) => {
+export const useDeleteCandidate = (onSucces: ()=> void) => {
   const [isLoading, setIsLoading] = useState(false);
-  const url = "http://localhost:4000/candidates/";
-
-  const onDeleteCandidate = (elId) => {
+  
+  const onDeleteCandidate = (elId: number) => {
     setIsLoading(true);
-    fetch(url + elId, {
+    fetch(link + elId, {
       method: "DELETE",
     })
       .then((response) => response.json())

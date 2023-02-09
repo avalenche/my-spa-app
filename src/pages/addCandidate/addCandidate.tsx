@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Spin } from 'antd';
 import CandidateForm from '../../components/CandidateForm';
 import PageTitle from '../../components/PageTitle';
-import { useAddCandidate } from '../../utils/useAddCandidate';
+import { useAddCandidate } from '../../utils/hooks/useAddCandidate';
 
-const AddCandidate = () => {
+const AddCandidate: React.FC = () => {
   const navigate = useNavigate();
 
   const toHomePage = () => navigate("/");

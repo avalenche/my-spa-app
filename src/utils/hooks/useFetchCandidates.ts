@@ -1,20 +1,22 @@
-import { useState } from "react";
+import { useState} from "react";
+import { link } from '../const';
 
 export const useFethcCandidates = () => {
   const [candidates, setCandidates] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [totalCandidate, setTotalCandidate] = useState();
+  const [totalCandidate, setTotalCandidate] = useState<number>();
 
-  const url = "http://localhost:4000/candidates/";
-
-  const fetchCandidates = (queryString) => {
+  
+  const fetchCandidates = (queryString: string) => {
     
-    const queryUrl = queryString ? `${url}?${queryString}` : url;
+    const queryUrl = queryString ? `${link}?${queryString}` : link;
     //   const queryUrl = `${url}${queryString || ""}`;
     setIsLoading(true);
     fetch(queryUrl)
       .then((response) => {
-        setTotalCandidate(response.headers.get("X-Total-Count"));
+        const xTotalCount = response.headers.get("X-Total-Count");
+        const total = xTotalCount ? Number(xTotalCount) : undefined;
+        setTotalCandidate(total);
         return response.json();
       })
       .then((body) => setCandidates(body))

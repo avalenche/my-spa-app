@@ -4,15 +4,13 @@ import queryString from "query-string"
 
 import { Table, Spin, TablePaginationConfig } from 'antd';
 
-import { useFethcCandidates } from '../../utils/useFetchCandidates';
-import { useDeleteCandidate } from '../../utils/useDeleteCandidate';
+import { useFethcCandidates } from '../../utils/hooks/useFetchCandidates';
+import { useDeleteCandidate } from '../../utils/hooks/useDeleteCandidate';
 import Filter from '../Filter';
 
 import { defaultFilterData, columns, TDataType, TFilterData } from './config';
 import { FilterValue, SorterResult } from 'antd/es/table/interface';
 import { TCandidate } from 'types/types';
-
-
 
 const TitleTable: React.FC = () => {
 

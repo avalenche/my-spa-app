@@ -9,7 +9,7 @@ interface IProps {
   maxSizeMb: number;
 }
 
-export const UploadImage: React.FC<IProps>  = ({ name, maxSizeMb }: IProps) => {
+export const UploadImage: React.FC<IProps>  = ({ name, maxSizeMb }) => {
   const form = Form.useFormInstance();
   const imageUrl = Form.useWatch(name, form);
 
