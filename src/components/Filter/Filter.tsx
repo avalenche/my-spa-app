@@ -1,5 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import { Input } from 'antd';
+
 import styles from './filter.module.scss';
 
 interface IProps {

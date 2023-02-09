@@ -9,7 +9,6 @@ import HomePage from "../pages/homePage";
 import NotFoundPage from '../pages/notFound';
 import { Routes, Route } from "react-router-dom";
 
-
 const App: React.FC = () => {  
   return (
     <div className={styles.app}>

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"
 import { Menu } from 'antd';
-import { AppstoreOutlined, MailOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, HomeOutlined } from '@ant-design/icons';
 import styles from './appHeader.module.scss';
 
 const items = [
   {
     label: (<Link to="/">Home</Link>),
     key: 'home',
-    icon: <MailOutlined />
+    icon: <HomeOutlined />
   },
   {
     label: (<Link to="/add">Add Candidates</Link>),

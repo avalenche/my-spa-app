@@ -1,7 +1,8 @@
 import React, { useCallback, useState } from 'react';
+import { Upload, Button, Form } from 'antd';
 
 import type {  UploadRequestOption  } from 'rc-upload/lib/interface';
-import { Upload, Button, Form } from 'antd';
+
 import { UploadOutlined } from '@ant-design/icons';
 
 interface IProps {

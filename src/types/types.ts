@@ -3,6 +3,7 @@ export enum TECH {
   HTML = "html",
   REACTJS = "reactjs",
 }
+
 export type TCandidate = {
   id: number;
   name: string;

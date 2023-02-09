@@ -1,8 +1,11 @@
-import { message } from "antd";
 import { useState } from "react";
+import { message } from "antd";
+
+import moment from 'moment';
+
 import { TCandidate } from 'types/types';
 import { link } from '../const';
-import moment from 'moment';
+
 
 export const useChangeCandidate = (id: number) => {
   const [isLoading, setIsLoading] = useState(false);
