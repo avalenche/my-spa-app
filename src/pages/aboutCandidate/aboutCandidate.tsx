@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { Spin } from "antd"
 
@@ -7,7 +7,7 @@ import PageTitle from '../../components/PageTitle';
 
 import { useDeleteCandidate } from '../../utils/hooks/useDeleteCandidate';
 import { useChangeCandidate } from '../../utils/hooks/useChangeCandidate';
-import { link } from 'utils/const';
+import { useFetchAboutCandidate } from 'utils/hooks/useFetchAboutCandidate';
 
 const AboutCandidate: React.FC = () => {
   const { id } = useParams();
@@ -16,19 +16,9 @@ const AboutCandidate: React.FC = () => {
   const navigate = useNavigate();
   const toHomePage = () => navigate("/")
 
-  const [candidate, setInfoAboutCandidate] = useState();
-  const [isLoading, setIsLoading] = useState(false);
   const { isLoading: isLoadingDelete, onDeleteCandidate } = useDeleteCandidate(toHomePage);
   const { isLoading: isLoadingChange, onChangeCandidate } = useChangeCandidate(currentId);
-
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetch(link + currentId)
-      .then(response => response.json())
-      .then(body => setInfoAboutCandidate(body))
-      .finally(() => setIsLoading(false))
-  }, [currentId])
+  const {isLoading, candidate } = useFetchAboutCandidate(currentId);
 
   const onDelete = useCallback(() => {
     onDeleteCandidate(currentId)

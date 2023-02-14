@@ -6,12 +6,10 @@ export const useFethcCandidates = () => {
   const [candidates, setCandidates] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [totalCandidate, setTotalCandidate] = useState<number>();
-
   
-  const fetchCandidates = (queryString: string) => {
-    
+  const fetchCandidates = (queryString: string) => {    
     const queryUrl = queryString ? `${link}?${queryString}` : link;
-    //   const queryUrl = `${url}${queryString || ""}`;
+    //   const queryUrl = `${link}${queryString || ""}`;
     setIsLoading(true);
     fetch(queryUrl)
       .then((response) => {
@@ -23,6 +21,7 @@ export const useFethcCandidates = () => {
       .then((body) => setCandidates(body))
       .finally(() => setIsLoading(false));
   };
+
   return {
     totalCandidate,
     candidates,

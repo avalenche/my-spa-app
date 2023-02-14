@@ -34,6 +34,7 @@ export const useAddCandidate = (onSuccess: ()=> void) => {
       })
       .finally(() => setIsLoading(false));
   };
+  
   return {
     onAddCandidate,
     isLoading,

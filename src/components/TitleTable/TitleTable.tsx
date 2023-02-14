@@ -8,7 +8,7 @@ import { useFethcCandidates } from '../../utils/hooks/useFetchCandidates';
 import { useDeleteCandidate } from '../../utils/hooks/useDeleteCandidate';
 import Filter from '../Filter';
 
-import { defaultFilterData, columns, TDataType, TFilterData } from './config';
+import { defaultFilterData, columns, TDataType, TFilterData, orderLabels } from './config';
 import { FilterValue, SorterResult } from 'antd/es/table/interface';
 import { TCandidate } from 'types/types';
 
@@ -24,7 +24,7 @@ const TitleTable: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterData])
 
-  const onFilter = (e: ChangeEvent<HTMLInputElement>) => {
+   const onFilter = (e: ChangeEvent<HTMLInputElement>) => {
     setTimeout(() => {
       const value = e.target.value;
       setFilterData((prev) => ({ ...prev, q: value }))
@@ -36,10 +36,10 @@ const TitleTable: React.FC = () => {
       filters: Record<string, FilterValue | null>,
       sorter: SorterResult<TDataType> | SorterResult<TDataType>[]
     ) => {
-    setFilterData((prev) => ({
+    setFilterData((prev) => ({      
       ...prev,
       _sort: !Array.isArray(sorter) ? sorter.field : undefined,
-      _order: !Array.isArray(sorter) ? sorter.order : undefined,
+      _order: !Array.isArray(sorter) && sorter.order ? orderLabels[sorter.order] : undefined,
       _limit: pagination.pageSize,
       _page: pagination.current,
       tech_like: filters.tech || undefined,

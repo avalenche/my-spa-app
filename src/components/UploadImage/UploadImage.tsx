@@ -4,6 +4,7 @@ import { Upload, Button, Form } from 'antd';
 import type {  UploadRequestOption  } from 'rc-upload/lib/interface';
 
 import { UploadOutlined } from '@ant-design/icons';
+import styles from './UploadImage.module.scss'
 
 interface IProps {
   name: string;
@@ -51,13 +52,14 @@ export const UploadImage: React.FC<IProps>  = ({ name, maxSizeMb }) => {
       customRequest={handleRequest}
       beforeUpload={validateFile}
       showUploadList={false}
+      className={styles.uploadImage}
     >
       {imageUrl ? (
         <img src={imageUrl} alt="candidate" width="200px" />
       ) : (
         <div>
           <Button icon={<UploadOutlined />}>Click to upload</Button>
-          {errorMessage && <span>{errorMessage}</span>}
+          {errorMessage && <span className={styles.errorMessage}>{errorMessage}</span>}
         </div>
       )}
     </Upload>
