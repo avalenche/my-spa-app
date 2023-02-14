@@ -1,4 +1,6 @@
 import React, { useEffect, ChangeEvent, useState, useMemo, useCallback  } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import DownMenu from '../DownMenu';
 import queryString from "query-string"
 
@@ -11,9 +13,12 @@ import Filter from '../Filter';
 import { defaultFilterData, columns, TDataType, TFilterData, orderLabels } from './config';
 import { FilterValue, SorterResult } from 'antd/es/table/interface';
 import { TCandidate } from 'types/types';
+import { fetchCandidatesAction, getCandidatesData, getCandidatesLoading } from 'pages/homePage/store';
+import useSelection from 'antd/es/table/hooks/useSelection';
 
 const TitleTable: React.FC = () => {
-
+  const dispatch = useDispatch()
+  const candidatesData = useSelector(getCandidatesData)
   const { candidates, isLoading, totalCandidate, fetchCandidates } = useFethcCandidates();
   const { isLoading: isLoadingDelete, onDeleteCandidate } = useDeleteCandidate(() => fetchCandidates(queryString.stringify(filterData, { arrayFormat: 'bracket' })));
 
@@ -21,6 +26,7 @@ const TitleTable: React.FC = () => {
 
   useEffect(() => {
     fetchCandidates(queryString.stringify(filterData, { arrayFormat: 'bracket' }));
+    dispatch(fetchCandidatesAction({queryString: queryString.stringify(filterData, { arrayFormat: 'bracket' })})) 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterData])
 
@@ -74,7 +80,7 @@ const tableColumns  = useMemo(()=>{
         }}
         rowKey="id"
         sortDirections={["ascend", "descend", "ascend"]}
-        dataSource={candidates}
+        dataSource={candidatesData}
         columns={tableColumns}
         onChange={onTableChange}
       />
