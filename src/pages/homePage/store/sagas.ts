@@ -1,20 +1,24 @@
 import { SagaIterator } from 'redux-saga';
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 
-import { fetchCandidates } from 'api/candidates';
+import { deleteCandidate, fetchCandidates } from 'api/candidates';
 import { PayloadAction } from '@reduxjs/toolkit';
 
 import {
   fetchCandidatesAction,
+  deleteCandidateAction,
   setCandidates,
-  setLoading
+  setLoading,
+  getFilterData,
+  TFilterData
 } from './index';
 
-function* fetchCandidatesSaga(action: PayloadAction<{ queryString: string }>): SagaIterator {
+
+function* fetchCandidatesSaga(action: PayloadAction<TFilterData>): SagaIterator {
   yield put(setLoading(true));
 
   try {
-    const data = yield call(fetchCandidates, { queryString: action.payload.queryString });
+    const data = yield call(fetchCandidates, action.payload);
     yield put(setCandidates(data));
   } catch (error) {
     yield call(console.error, error);
@@ -23,6 +27,21 @@ function* fetchCandidatesSaga(action: PayloadAction<{ queryString: string }>): S
   }
 }
 
+function* deleteCandidateSaga(action: PayloadAction<number>): SagaIterator {
+  yield put(setLoading(true));
+
+  try {
+    yield call(deleteCandidate, action.payload);
+    const filterData: TFilterData = yield select(getFilterData);
+    yield put(fetchCandidatesAction(filterData))
+    } catch (error) {
+    yield call(console.error, error);
+  } finally {
+    yield put(setLoading(false));
+  }
+}
+
 export function* watchCandidatesSagas() {
   yield takeLatest(fetchCandidatesAction, fetchCandidatesSaga);
+  yield takeLatest(deleteCandidateAction, deleteCandidateSaga);
 }

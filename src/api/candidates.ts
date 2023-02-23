@@ -1,25 +1,28 @@
 import { SagaIterator } from 'redux-saga';
 
+import queryString from "query-string"
 import axios from 'api/apiClient';
+import { TFilterData } from 'components/TitleTable/config';
+import { TCandidate } from 'types/types';
 
-export const fetchCandidates = ({
-  queryString,
-}: {queryString: string}): SagaIterator => {
-  return axios.get(`/candidates?${queryString}`);
+export const fetchCandidates = (filterData: TFilterData): SagaIterator => {
+  const query = queryString.stringify(filterData, { arrayFormat: 'bracket' });
+  return axios.get(`/candidates?${query}`);
 };
 
 export function fetchCandidate(payload: number) {
   return axios.get(`/candidates/${payload}`);
 }
 
-export function createCandidate(payload: number) {
-  return axios.post(`/candidates/${payload}`);
+export function createCandidate(payload: Omit<TCandidate, "id"> ) {
+  return axios.post(`/candidates`, payload);
 }
 
-export function updateCandidate(payload: number) {
-  return axios.patch(`/candidates/${payload}`);
+export function updateCandidate(payload: TCandidate  ) {
+  const {id, ...rest} = payload;
+  return axios.patch(`/candidates/${id}`, rest);
 }
 
-export function deleteCandidate(payload: number) {
-  return axios.delete(`/candidates/${payload}/`, {});
+export function deleteCandidate(id: number) {
+  return axios.delete(`/candidates/${id}/`, {});
 }

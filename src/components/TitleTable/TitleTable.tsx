@@ -1,4 +1,4 @@
-import React, { useEffect, ChangeEvent, useState, useMemo, useCallback  } from 'react';
+import React, { useEffect, ChangeEvent, useMemo, useCallback  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DownMenu from '../DownMenu';
@@ -10,30 +10,37 @@ import { useFethcCandidates } from '../../utils/hooks/useFetchCandidates';
 import { useDeleteCandidate } from '../../utils/hooks/useDeleteCandidate';
 import Filter from '../Filter';
 
-import { defaultFilterData, columns, TDataType, TFilterData, orderLabels } from './config';
+import {  columns, TDataType, TFilterData, orderLabels } from './config';
 import { FilterValue, SorterResult } from 'antd/es/table/interface';
 import { TCandidate } from 'types/types';
-import { fetchCandidatesAction, getCandidatesData, getCandidatesLoading } from 'pages/homePage/store';
-import useSelection from 'antd/es/table/hooks/useSelection';
+import { fetchCandidatesAction, getCandidatesData, getCandidatesLoading, deleteCandidateAction, getFilterData, setFilters } from 'pages/homePage/store';
 
 const TitleTable: React.FC = () => {
-  const dispatch = useDispatch()
-  const candidatesData = useSelector(getCandidatesData)
-  const { candidates, isLoading, totalCandidate, fetchCandidates } = useFethcCandidates();
-  const { isLoading: isLoadingDelete, onDeleteCandidate } = useDeleteCandidate(() => fetchCandidates(queryString.stringify(filterData, { arrayFormat: 'bracket' })));
+  
+  const dispatch = useDispatch();
+  const candidates = useSelector(getCandidatesData);
+  const isLoading = useSelector(getCandidatesLoading);
+  const filterData = useSelector(getFilterData);
 
-  const [filterData, setFilterData] = useState(defaultFilterData);
+  const totalCandidate = candidates.length;
+
+  const {  fetchCandidates } = useFethcCandidates();
+
+  const { isLoading: isLoadingDelete } = useDeleteCandidate(() => fetchCandidates
+  (queryString.stringify(filterData, { arrayFormat: 'bracket' })));
+
+  const onDeleteCandidate = useCallback( (id: number)=> dispatch(deleteCandidateAction(id)), [dispatch])
+  const setFilterData = useCallback( (data: TFilterData) => dispatch(setFilters(data)), [dispatch])
 
   useEffect(() => {
-    fetchCandidates(queryString.stringify(filterData, { arrayFormat: 'bracket' }));
-    dispatch(fetchCandidatesAction({queryString: queryString.stringify(filterData, { arrayFormat: 'bracket' })})) 
+      dispatch(fetchCandidatesAction(filterData)) 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterData])
 
    const onFilter = (e: ChangeEvent<HTMLInputElement>) => {
     setTimeout(() => {
       const value = e.target.value;
-      setFilterData((prev) => ({ ...prev, q: value }))
+      setFilterData({ ...filterData, q: value })
     }, 1000)
   }
 
@@ -42,15 +49,15 @@ const TitleTable: React.FC = () => {
       filters: Record<string, FilterValue | null>,
       sorter: SorterResult<TDataType> | SorterResult<TDataType>[]
     ) => {
-    setFilterData((prev) => ({      
-      ...prev,
+    setFilterData({      
+      ...filterData,
       _sort: !Array.isArray(sorter) ? sorter.field : undefined,
       _order: !Array.isArray(sorter) && sorter.order ? orderLabels[sorter.order] : undefined,
       _limit: pagination.pageSize,
       _page: pagination.current,
       tech_like: filters.tech || undefined,
-    } as TFilterData))
-  }, []);
+    } as TFilterData)
+  }, [filterData, setFilterData]);
 
 const tableColumns  = useMemo(()=>{
  return columns.map((col)=> {
@@ -80,7 +87,7 @@ const tableColumns  = useMemo(()=>{
         }}
         rowKey="id"
         sortDirections={["ascend", "descend", "ascend"]}
-        dataSource={candidatesData}
+        dataSource={candidates}
         columns={tableColumns}
         onChange={onTableChange}
       />

@@ -1,34 +1,56 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { Spin } from "antd"
+import { useSelector, useDispatch } from 'react-redux';
 
+import {fetchCandidateAction,
+   getCandidate,
+   getCandidateIsLoading,
+   resetCandidate,
+   getToHomePage,
+   setToHomePage,
+   deleteCandidateAction} from './store'
 import CandidateForm from '../../components/CandidateForm';
 import PageTitle from '../../components/PageTitle';
 
-import { useDeleteCandidate } from '../../utils/hooks/useDeleteCandidate';
+
 import { useChangeCandidate } from '../../utils/hooks/useChangeCandidate';
-import { useFetchAboutCandidate } from 'utils/hooks/useFetchAboutCandidate';
 
 const AboutCandidate: React.FC = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
   const currentId = useMemo(() => Number(id), [id]);
 
   const navigate = useNavigate();
-  const toHomePage = () => navigate("/")
 
-  const { isLoading: isLoadingDelete, onDeleteCandidate } = useDeleteCandidate(toHomePage);
   const { isLoading: isLoadingChange, onChangeCandidate } = useChangeCandidate(currentId);
-  const {isLoading, candidate } = useFetchAboutCandidate(currentId);
+  const candidate = useSelector(getCandidate);
+  const isLoading = useSelector(getCandidateIsLoading);
+  const toHomePage = useSelector(getToHomePage);
+
+  useEffect(() => {
+    dispatch(fetchCandidateAction(currentId));
+    return () => {dispatch(resetCandidate())};
+  }
+  ,[dispatch, currentId])
+
+  useEffect(()=> {
+    if (toHomePage) {
+      navigate("/");
+      dispatch(setToHomePage(false))
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toHomePage])
 
   const onDelete = useCallback(() => {
-    onDeleteCandidate(currentId)
-  }, [currentId, onDeleteCandidate]);
+    dispatch(deleteCandidateAction(currentId))
+  }, [currentId, dispatch]);
 
 
   return (
     <div>
       <PageTitle title="About Candidate:" />
-      <Spin spinning={isLoading || isLoadingDelete || isLoadingChange}>
+      <Spin spinning={isLoading || isLoadingChange}>
         <CandidateForm onFinish={onChangeCandidate} initialValues={candidate} deleteOneCandidate={onDelete} />
       </Spin>
     </div>

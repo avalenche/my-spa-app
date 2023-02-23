@@ -8,14 +8,6 @@ export const orderLabels = { ascend: "asc", descend: "desc" };
 export const techLabels = { [TECH.CSS]: "CSS", [TECH.HTML]: "HTML", [TECH.REACTJS]: "ReactJS" };
 export const techColors = { [TECH.CSS]: "green", [TECH.HTML]: "grey", [TECH.REACTJS]: "red" };
 
-export const defaultFilterData: TFilterData = {
-  q: undefined,
-  _sort: "id",
-  _order: "desc",
-  _limit: 10,
-  _page: 1,
-  tech_like: undefined,
-}
 
 export const columns: ColumnsType<TDataType> = [
   {
@@ -88,6 +80,7 @@ export type TFilterData = {
   _page: number,
   tech_like?: string[],
 }
+
 
 export type TDataType = TCandidate & {
   key: React.Key;
