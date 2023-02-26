@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+export {}
+/*import { useEffect, useState } from 'react';
 
 import { link } from 'utils/const';
 
@@ -20,3 +21,4 @@ export const useFetchAboutCandidate = (currentId: number) => {
   }
 
 };
+*/

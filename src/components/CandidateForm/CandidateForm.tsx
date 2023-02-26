@@ -4,6 +4,7 @@ import { Form, Input, Select, Button } from "antd"
 import UploadImage from '../UploadImage';
 import { TCandidate, TECH } from 'types/types';
 import { techLabels } from 'components/TitleTable/config';
+import styles from "./CandidateForm.module.scss"
 
 type TProps ={
   onFinish: (value: Omit<TCandidate, "addDate">) => void;
@@ -20,9 +21,9 @@ const CandidateForm: React.FC<TProps>  = ({ onFinish, initialValues,  deleteOneC
     if (initialValues) form.resetFields();
   }, [initialValues, form])
 
-
   return (
     <Form
+      className={styles.CandidateForm}
       labelCol={{
         span: 4,
       }}
@@ -61,13 +62,13 @@ const CandidateForm: React.FC<TProps>  = ({ onFinish, initialValues,  deleteOneC
 
       </Form.Item>
 
-      <Form.Item label="Submit">
-        <Button htmlType='submit' >Submit</Button>
+      <Form.Item >
+        <Button  className={styles.buttonMargin} htmlType='submit' >Submit</Button>
       </Form.Item>
 
       {deleteOneCandidate && (
-        <Form.Item label="Delete">
-          <Button onClick={deleteOneCandidate} >Delete</Button>
+        <Form.Item >
+          <Button className={styles.buttonMargin} onClick={deleteOneCandidate} >Delete</Button>
         </Form.Item>
       )}
 

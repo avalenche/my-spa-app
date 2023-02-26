@@ -1,4 +1,5 @@
-import { useState } from "react";
+export {}
+/*import { useState } from "react";
 import { message } from "antd";
 
 import moment from 'moment';
@@ -30,7 +31,7 @@ export const useChangeCandidate = (id: number) => {
         message.success("Candidate data is upload");
       })
       .catch((error) => {
-        message.error("Candidate data is upload");
+        message.error("Candidate data is not upload");
         console.log("Error:", error);
       })
       .finally(() => setIsLoading(false));
@@ -41,3 +42,4 @@ export const useChangeCandidate = (id: number) => {
     isLoading,
   };
 };
+*/

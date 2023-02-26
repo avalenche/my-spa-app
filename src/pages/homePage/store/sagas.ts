@@ -1,17 +1,21 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
-import { deleteCandidate, fetchCandidates } from 'api/candidates';
+import { deleteCandidate, fetchCandidates, createCandidate } from 'api/candidates';
 import { PayloadAction } from '@reduxjs/toolkit';
+import { message } from "antd";
 
 import {
   fetchCandidatesAction,
   deleteCandidateAction,
+  addCandidateAction,
   setCandidates,
   setLoading,
+  setToHomePage,
   getFilterData,
   TFilterData
 } from './index';
+import { TCandidate } from 'types/types';
 
 
 function* fetchCandidatesSaga(action: PayloadAction<TFilterData>): SagaIterator {
@@ -34,8 +38,25 @@ function* deleteCandidateSaga(action: PayloadAction<number>): SagaIterator {
     yield call(deleteCandidate, action.payload);
     const filterData: TFilterData = yield select(getFilterData);
     yield put(fetchCandidatesAction(filterData))
+    message.success("Candidate is deleted");
     } catch (error) {
     yield call(console.error, error);
+    message.error("Candidate is not deleted");
+  } finally {
+    yield put(setLoading(false));
+  }
+}
+
+function* addCandidateSaga(action: PayloadAction<TCandidate>): SagaIterator {
+  yield put(setLoading(true));
+
+  try {
+    yield call(createCandidate, action.payload)
+    yield put(setToHomePage(true));
+    message.success("Candidate data is upload");
+  } catch (error) {
+    yield call(console.error, error);
+    message.error("Candidate data is not upload");
   } finally {
     yield put(setLoading(false));
   }
@@ -44,4 +65,5 @@ function* deleteCandidateSaga(action: PayloadAction<number>): SagaIterator {
 export function* watchCandidatesSagas() {
   yield takeLatest(fetchCandidatesAction, fetchCandidatesSaga);
   yield takeLatest(deleteCandidateAction, deleteCandidateSaga);
+  yield takeLatest(addCandidateAction, addCandidateSaga);
 }

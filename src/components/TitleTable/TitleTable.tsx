@@ -2,18 +2,21 @@ import React, { useEffect, ChangeEvent, useMemo, useCallback  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import DownMenu from '../DownMenu';
-import queryString from "query-string"
 
 import { Table, Spin, TablePaginationConfig } from 'antd';
 
-import { useFethcCandidates } from '../../utils/hooks/useFetchCandidates';
-import { useDeleteCandidate } from '../../utils/hooks/useDeleteCandidate';
 import Filter from '../Filter';
 
 import {  columns, TDataType, TFilterData, orderLabels } from './config';
 import { FilterValue, SorterResult } from 'antd/es/table/interface';
 import { TCandidate } from 'types/types';
-import { fetchCandidatesAction, getCandidatesData, getCandidatesLoading, deleteCandidateAction, getFilterData, setFilters } from 'pages/homePage/store';
+import { fetchCandidatesAction,
+          getCandidatesData,
+          getCandidatesLoading,
+          deleteCandidateAction,
+          getFilterData,
+          setFilters,
+        } from 'pages/homePage/store';
 
 const TitleTable: React.FC = () => {
   
@@ -24,12 +27,8 @@ const TitleTable: React.FC = () => {
 
   const totalCandidate = candidates.length;
 
-  const {  fetchCandidates } = useFethcCandidates();
-
-  const { isLoading: isLoadingDelete } = useDeleteCandidate(() => fetchCandidates
-  (queryString.stringify(filterData, { arrayFormat: 'bracket' })));
-
   const onDeleteCandidate = useCallback( (id: number)=> dispatch(deleteCandidateAction(id)), [dispatch])
+  
   const setFilterData = useCallback( (data: TFilterData) => dispatch(setFilters(data)), [dispatch])
 
   useEffect(() => {
@@ -74,8 +73,7 @@ const tableColumns  = useMemo(()=>{
 }, [onDeleteCandidate])
 
   return (
-    <Spin spinning={isLoading || isLoadingDelete}>
-
+    <Spin spinning={isLoading}> 
       <Filter onFilterCandidate={onFilter} />
       <Table
         pagination={{

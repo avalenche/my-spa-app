@@ -4,6 +4,7 @@ import { Spin } from "antd"
 import { useSelector, useDispatch } from 'react-redux';
 
 import {fetchCandidateAction,
+  updateCandidateAction,
    getCandidate,
    getCandidateIsLoading,
    resetCandidate,
@@ -12,9 +13,8 @@ import {fetchCandidateAction,
    deleteCandidateAction} from './store'
 import CandidateForm from '../../components/CandidateForm';
 import PageTitle from '../../components/PageTitle';
-
-
-import { useChangeCandidate } from '../../utils/hooks/useChangeCandidate';
+import moment from 'moment';
+import { TCandidate } from 'types/types';
 
 const AboutCandidate: React.FC = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,6 @@ const AboutCandidate: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const { isLoading: isLoadingChange, onChangeCandidate } = useChangeCandidate(currentId);
   const candidate = useSelector(getCandidate);
   const isLoading = useSelector(getCandidateIsLoading);
   const toHomePage = useSelector(getToHomePage);
@@ -42,15 +41,25 @@ const AboutCandidate: React.FC = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toHomePage])
 
+  const onChangeCandidate = useCallback ((value: Omit<TCandidate, "addDate">)=> {
+    const dateNow = moment().format("YYYY-MM-DD HH:mm:ss");
+    const newValue = {
+      ...value,
+      addDate: dateNow,
+      id: currentId,
+    };
+    console.log("newValue onChange:", newValue)
+    dispatch(updateCandidateAction(newValue))
+  }, [currentId, dispatch])
+
   const onDelete = useCallback(() => {
     dispatch(deleteCandidateAction(currentId))
   }, [currentId, dispatch]);
 
-
   return (
     <div>
       <PageTitle title="About Candidate:" />
-      <Spin spinning={isLoading || isLoadingChange}>
+      <Spin spinning={isLoading}>
         <CandidateForm onFinish={onChangeCandidate} initialValues={candidate} deleteOneCandidate={onDelete} />
       </Spin>
     </div>

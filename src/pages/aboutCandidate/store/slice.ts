@@ -30,6 +30,7 @@ const candidate = createSlice({
       state.toHomePage = action.payload;
     },
 
+    updateCandidateAction: (_state, _action:PayloadAction<TCandidate> ) => {},
     fetchCandidateAction: (_state, _action: PayloadAction<number>) => {},
     deleteCandidateAction: (_state, _action: PayloadAction<number>) => {},
   },
@@ -40,6 +41,7 @@ export const {
     setIsLoading,
     resetCandidate,
     setToHomePage,
+    updateCandidateAction,
     fetchCandidateAction,
     deleteCandidateAction,
 } = candidate.actions;

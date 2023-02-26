@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './PageTitle.module.scss';
+import styles from './pageTitle.module.scss';
 
 interface IProps {
   title: string;

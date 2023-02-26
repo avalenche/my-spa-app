@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { TCandidate } from 'types/types';
 import { TFilterData } from './types';
 
 const defaultFilterData: TFilterData = {
@@ -14,7 +15,8 @@ const defaultFilterData: TFilterData = {
 const initialState = {
   loading: false,
   data: [] as any[],
-  filterData: defaultFilterData
+  filterData: defaultFilterData,
+  toHomePage: false,
 };
 
 const candidates = createSlice({
@@ -30,10 +32,13 @@ const candidates = createSlice({
     setFilters: (state, action: PayloadAction<TFilterData>) => {
       state.filterData = action.payload;
     },
+    setToHomePage: (state, action: PayloadAction<boolean>) => {
+      state.toHomePage = action.payload;
+    },
 
     fetchCandidatesAction: (_state, _action: PayloadAction<TFilterData>) => {},
-
-    deleteCandidateAction: (_state, _action: PayloadAction<number>) => {}
+    deleteCandidateAction: (_state, _action: PayloadAction<number>) => {},
+    addCandidateAction: (_state, _action: PayloadAction<TCandidate>) => {}
   },
 });
 
@@ -41,8 +46,10 @@ export const {
     setCandidates,
     setLoading,
     setFilters,
+    setToHomePage,
     fetchCandidatesAction,
     deleteCandidateAction,
+    addCandidateAction,
 } = candidates.actions;
 
 export default candidates.reducer;

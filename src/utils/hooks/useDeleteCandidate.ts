@@ -1,4 +1,5 @@
-import { useState } from "react";
+export {}
+/*import { useState } from "react";
 import { message } from "antd";
 
 import { link } from '../const';
@@ -27,3 +28,4 @@ export const useDeleteCandidate = (onSucces: ()=> void) => {
     isLoading,
   };
 };
+*/

@@ -1,4 +1,5 @@
-import { useState} from "react";
+export {}
+/*import { useState} from "react";
 
 import { link } from '../const';
 
@@ -29,3 +30,4 @@ export const useFethcCandidates = () => {
     fetchCandidates,
   };
 };
+*/
